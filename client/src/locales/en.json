@@ -10,7 +10,9 @@
     "tryAgain": "Please try again later",
     "logoutSuccess": "Successfully logged out",
     "seeYouSoon": "Hope to see you again soon",
-    "logoutError": "Logout failed"
+    "logoutError": "Logout failed",
+    "loginPrompt": "Sign in to unlock personalized farming advice and track your farming metrics",
+    "privacyNotice": "By signing in, you agree to our Terms of Service and Privacy Policy"
   },
   "nav": {
     "home": "Home",

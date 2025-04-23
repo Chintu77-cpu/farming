@@ -22,22 +22,11 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  const [, setLocation] = useLocation();
+
   const handleLogin = async () => {
-    try {
-      await loginWithGoogle();
-      toast({
-        title: t("auth.loginSuccess"),
-        description: t("auth.welcomeBack"),
-        variant: "default",
-      });
-    } catch (error) {
-      console.error("Login error:", error);
-      toast({
-        title: t("auth.loginError"),
-        description: t("auth.tryAgain"),
-        variant: "destructive",
-      });
-    }
+    // Redirect to login page instead of showing popup directly
+    setLocation("/login");
   };
 
   const handleLogout = async () => {
@@ -100,11 +89,11 @@ const Header = () => {
             ) : (
               <Button 
                 variant="default"
-                className="flex items-center bg-accent text-white px-4 py-2 rounded-lg hover:bg-accent-dark transition-colors"
+                className="flex items-center bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors shadow-md"
                 onClick={handleLogin}
               >
-                <i className="ri-google-fill mr-2"></i>
-                <span>{t("auth.signInWithGoogle")}</span>
+                <i className="ri-google-fill text-lg mr-3"></i>
+                <span className="font-medium">{t("auth.signInWithGoogle")}</span>
               </Button>
             )}
           </div>

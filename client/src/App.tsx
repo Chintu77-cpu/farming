@@ -10,6 +10,7 @@ import WaterConservation from "@/pages/WaterConservation";
 import SoilHealth from "@/pages/SoilHealth";
 import Weather from "@/pages/Weather";
 import About from "@/pages/About";
+import Login from "@/pages/Login";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
@@ -46,6 +47,7 @@ function Router() {
       <div className="flex-grow">
         <Switch>
           <Route path="/" component={Home} />
+          <Route path="/login" component={Login} />
           <Route path="/farming-tips" component={FarmingTips} />
           <Route path="/water-conservation" component={WaterConservation} />
           <Route path="/soil-health" component={SoilHealth} />
