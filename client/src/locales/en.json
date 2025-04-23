@@ -1,0 +1,242 @@
+{
+  "header": {
+    "title": "FarmSustain"
+  },
+  "auth": {
+    "signInWithGoogle": "Sign in with Google",
+    "loginSuccess": "Successfully logged in",
+    "welcomeBack": "Welcome back to FarmSustain",
+    "loginError": "Login failed",
+    "tryAgain": "Please try again later",
+    "logoutSuccess": "Successfully logged out",
+    "seeYouSoon": "Hope to see you again soon",
+    "logoutError": "Logout failed"
+  },
+  "nav": {
+    "home": "Home",
+    "farmingTips": "Farming Tips",
+    "waterConservation": "Water Conservation",
+    "soilHealth": "Soil Health",
+    "weather": "Weather",
+    "about": "About"
+  },
+  "hero": {
+    "title": "Sustainable Farming for a Better Tomorrow",
+    "subtitle": "Learn modern agricultural techniques that protect our environment while improving yields",
+    "askAssistant": "Ask Farming Assistant",
+    "browseResources": "Browse Resources"
+  },
+  "features": {
+    "title": "Essential Farming Resources"
+  },
+  "weather": {
+    "title": "Weather Updates",
+    "pageTitle": "Weather Forecast",
+    "pageDescription": "Get accurate weather information for your farming needs. Plan your activities based on reliable forecasts.",
+    "searchPlaceholder": "Enter city or location",
+    "search": "Search",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "rain": "Rain",
+    "feelsLike": "Feels Like",
+    "unavailable": "Weather data unavailable",
+    "retry": "Try Again",
+    "errorTitle": "Could not load weather data",
+    "errorMessage": "Please check your internet connection and try again",
+    "viewForecast": "View 7-day forecast",
+    "forecast": "Weather Forecast",
+    "dailyForecast": "Daily",
+    "hourlyForecast": "Hourly",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "maxTemp": "Max Temp",
+    "minTemp": "Min Temp",
+    "avgTemp": "Avg Temp",
+    "condition": "Condition",
+    "chanceOfRain": "Chance of Rain"
+  },
+  "waterConservation": {
+    "title": "Water Conservation",
+    "pageTitle": "Water Conservation Tips",
+    "pageDescription": "Learn efficient water management techniques to reduce usage while maintaining crop health and productivity.",
+    "bannerTitle": "Save Water, Save Life",
+    "bannerText": "Water conservation is essential for sustainable farming and environmental protection. Implement these practices to make a difference.",
+    "tipsTitle": "Water Conservation Techniques",
+    "viewAll": "View All Tips",
+    "noTips": "No water conservation tips available.",
+    "noTipsAvailable": "No water conservation tips are currently available. Please check back later.",
+    "factTitle": "Did You Know?",
+    "fact1": "Agriculture accounts for about 70% of all freshwater withdrawals globally, and up to 90% in some fast-growing economies.",
+    "fact2": "Drip irrigation can reduce water usage by up to 60% compared to conventional flood irrigation methods."
+  },
+  "soilHealth": {
+    "title": "Soil Health",
+    "pageTitle": "Soil Health Management",
+    "pageDescription": "Monitor and improve your soil health for optimal crop growth and sustainable farming practices.",
+    "moistureLevel": "Moisture Level",
+    "moistureStatus": "Current Soil Moisture Status",
+    "moistureMessage": "Your soil moisture levels are in the optimal range for paddy cultivation.",
+    "analysis": "Soil Analysis",
+    "dry": "Dry",
+    "moderate": "Moderate",
+    "optimal": "Optimal",
+    "wet": "Wet",
+    "unknown": "Unknown",
+    "tabs": {
+      "moisture": "Moisture",
+      "tips": "Soil Tips",
+      "testing": "Soil Testing"
+    },
+    "recommendations": {
+      "title": "Recommendations",
+      "dry": "Your soil is too dry. Increase irrigation frequency and consider adding mulch to retain moisture.",
+      "moderate": "Soil moisture is acceptable but could be improved. Monitor water levels and adjust irrigation as needed.",
+      "optimal": "Your soil moisture is ideal. Maintain current irrigation practices and continue monitoring.",
+      "wet": "Your soil is too wet. Reduce irrigation and ensure proper drainage to prevent root rot.",
+      "unknown": "Could not determine soil status. Please check your sensors or contact support."
+    },
+    "tips": {
+      "title1": "Maintaining Healthy Soil",
+      "content1": "Healthy soil is the foundation of successful sustainable farming. Here are some practices to maintain and improve soil health:",
+      "bullet1": "Rotate crops to prevent nutrient depletion and pest problems",
+      "bullet2": "Use cover crops during off-seasons to prevent erosion and add organic matter",
+      "bullet3": "Apply organic fertilizers and compost to improve soil structure and fertility",
+      "title2": "Importance of Soil pH",
+      "content2": "Soil pH affects nutrient availability to plants. For paddy cultivation, maintaining a slightly acidic to neutral pH (5.5-6.5) is optimal. Regular testing and appropriate amendments can help keep your soil at the ideal pH level."
+    },
+    "testing": {
+      "title": "Soil Testing Methods",
+      "description": "Regular soil testing is crucial for understanding your soil's needs and making informed decisions about fertilization and amendments.",
+      "professionalTitle": "Professional Lab Testing",
+      "professionalContent": "Send soil samples to a certified laboratory for comprehensive analysis of nutrients, pH, organic matter, and potential contaminants.",
+      "contactLab": "Find a testing lab near you →",
+      "diyTitle": "DIY Testing Kits",
+      "diyContent": "Use at-home testing kits to get basic information about your soil's pH, nitrogen, phosphorus, and potassium levels.",
+      "learnMore": "Learn about DIY testing methods →"
+    }
+  },
+  "paddyGuide": {
+    "title": "Paddy Farming Guide",
+    "pageDescription": "Comprehensive guide to paddy cultivation with sustainable practices for maximum yield and environmental protection.",
+    "description": "Comprehensive resources for successful paddy cultivation in your region.",
+    "readGuide": "Read Complete Guide",
+    "noInformation": "No paddy farming information is available at the moment. Please check back later.",
+    "categories": {
+      "soilPreparation": "Soil Preparation",
+      "seeding": "Seeding",
+      "waterManagement": "Water Management",
+      "harvesting": "Harvesting"
+    }
+  },
+  "chatbot": {
+    "title": "AI Farming Assistant",
+    "subtitle": "Ask any questions about sustainable farming, water conservation, soil health, or paddy cultivation",
+    "welcome": "Hello! I'm your Farming Assistant. How can I help you today with sustainable farming practices?",
+    "inputPlaceholder": "Type your farming question here...",
+    "poweredBy": "Powered by OpenAI",
+    "disclaimer": "Responses are AI-generated and may require verification",
+    "errorTitle": "Could not get response",
+    "errorDescription": "There was an error processing your request. Please try again.",
+    "loginRequired": "Login Required",
+    "pleaseLogin": "Please sign in with Google to use the AI assistant"
+  },
+  "speechToText": {
+    "startListening": "Voice input",
+    "stopListening": "Stop listening",
+    "unsupported": "Speech recognition not supported",
+    "browserUnsupported": "Your browser does not support speech recognition"
+  },
+  "textToSpeech": {
+    "speak": "Text to speech"
+  },
+  "featuredContent": {
+    "title": "Learn Sustainable Farming",
+    "read": "read",
+    "readArticle": "Read Article",
+    "article1": {
+      "title": "Eco-Friendly Pest Management",
+      "description": "Learn how to control pests effectively without harming the environment using natural predators and organic solutions."
+    },
+    "article2": {
+      "title": "Optimizing Paddy Irrigation",
+      "description": "Discover efficient irrigation techniques that reduce water usage while maintaining or improving crop yields."
+    },
+    "article3": {
+      "title": "Understanding Soil Health",
+      "description": "Learn how to test and interpret soil health metrics to make data-driven decisions for better crop management."
+    }
+  },
+  "footer": {
+    "title": "FarmSustain",
+    "description": "Empowering farmers with sustainable agricultural knowledge and technology.",
+    "quickLinks": "Quick Links",
+    "farmingResources": "Farming Resources",
+    "contactUs": "Contact Us",
+    "resources": "Resources",
+    "sustainablePractices": "Sustainable Practices",
+    "faq": "FAQ",
+    "address": "123 Farming District, Agricultural Zone, India",
+    "allRightsReserved": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy"
+  },
+  "about": {
+    "title": "About FarmSustain",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To empower farmers with knowledge and technology for sustainable agriculture that improves yields while protecting the environment."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "A world where sustainable farming practices are widely adopted, ensuring food security and environmental health for future generations."
+    },
+    "values": {
+      "title": "Our Values",
+      "description": "Sustainability, education, innovation, and community empowerment guide everything we do at FarmSustain."
+    },
+    "ourStory": {
+      "title": "Our Story",
+      "paragraph1": "FarmSustain was founded in 2020 by a group of agricultural scientists, technologists, and farmers who recognized the need for better educational resources and tools for sustainable farming practices in rural areas.",
+      "paragraph2": "Starting with a small pilot project focused on paddy cultivation, we quickly expanded our scope to include water conservation, soil health management, and other key aspects of sustainable agriculture. Our initial success came from our hands-on approach, working directly with farming communities to understand their challenges and develop practical solutions.",
+      "paragraph3": "Today, FarmSustain serves thousands of farmers across the country, providing multilingual resources, AI-powered assistance, and real-time data to support sustainable farming decisions. We continue to grow and adapt, always guided by our commitment to environmental stewardship and farmer prosperity."
+    },
+    "whatWeDo": {
+      "title": "What We Do",
+      "education": {
+        "title": "Farmer Education",
+        "description": "We provide comprehensive educational resources on sustainable farming practices, crop management, and environmental conservation in multiple languages."
+      },
+      "technology": {
+        "title": "Technology Integration",
+        "description": "We harness AI, weather data, and mobile technology to make advanced farming knowledge accessible to all farmers, regardless of literacy or technical background."
+      },
+      "sustainability": {
+        "title": "Sustainability Advocacy",
+        "description": "We promote water conservation, soil health, and eco-friendly pest management techniques that protect natural resources while maintaining crop yields."
+      },
+      "community": {
+        "title": "Community Building",
+        "description": "We connect farmers with experts and each other to share knowledge, experiences, and support for implementing sustainable practices."
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "member1": {
+        "name": "Dr. Aarav Sharma",
+        "role": "Founder & Agricultural Scientist",
+        "bio": "With over 15 years of experience in sustainable agriculture research, Dr. Sharma leads our scientific initiatives and content development."
+      },
+      "member2": {
+        "name": "Priya Patel",
+        "role": "Technology Director",
+        "bio": "A computer scientist with expertise in AI and mobile applications, Priya ensures our technology is both powerful and accessible to all users."
+      },
+      "member3": {
+        "name": "Rajesh Kumar",
+        "role": "Community Outreach",
+        "bio": "Former farmer and agricultural extension officer, Rajesh bridges the gap between technology and practical field application."
+      }
+    }
+  }
+}
