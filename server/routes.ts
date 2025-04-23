@@ -6,9 +6,13 @@ import OpenAI from "openai";
 import { insertChatMessageSchema, insertUserSchema } from "@shared/schema";
 import { ZodError } from "zod";
 
+// Initialize OpenAI with API key from environment variables
 const openai = new OpenAI({ 
   apiKey: process.env.OPENAI_API_KEY || '' 
 });
+
+// Log OpenAI API key status (not the actual key)
+console.log("OpenAI API Key Status:", process.env.OPENAI_API_KEY ? "Set" : "Not set");
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // User routes
@@ -72,14 +76,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Save user message
       const savedMessage = await storage.createChatMessage(messageData);
       
+      // Helper function for fallback answers when OpenAI fails
+      const getFallbackAnswer = (question: string): string => {
+        const normalizedQuestion = question.toLowerCase();
+        
+        if (normalizedQuestion.includes("water") || normalizedQuestion.includes("irrigation")) {
+          return "For water conservation in farming: Consider implementing drip irrigation, which can save up to 60% water compared to traditional methods. Mulching helps retain soil moisture. Leveling fields properly prevents runoff. Scheduled irrigation during early morning or evening reduces evaporation losses.";
+        }
+        
+        if (normalizedQuestion.includes("soil") || normalizedQuestion.includes("nutrient")) {
+          return "For healthy soil: Regularly test soil pH and nutrient levels. Practice crop rotation to prevent nutrient depletion. Use cover crops during off-seasons to add organic matter. Apply compost to improve soil structure. Minimize tillage to preserve beneficial soil organisms.";
+        }
+        
+        if (normalizedQuestion.includes("pest") || normalizedQuestion.includes("insect") || normalizedQuestion.includes("disease")) {
+          return "For sustainable pest management: Use companion planting to naturally repel insects. Introduce beneficial insects like ladybugs that prey on pests. Apply neem oil as a natural pesticide. Maintain biodiversity in your fields to prevent large pest outbreaks.";
+        }
+        
+        if (normalizedQuestion.includes("paddy") || normalizedQuestion.includes("rice")) {
+          return "For paddy cultivation: The System of Rice Intensification (SRI) can increase yields while using less water. Maintain shallow water levels (2-3cm) instead of deep flooding. Use young seedlings (8-12 days) when transplanting. Space plants properly to allow sunlight penetration.";
+        }
+        
+        // Default answer for other questions
+        return "I can provide information about sustainable farming practices, water conservation, soil health, and paddy cultivation. I'll share more specific advice on these farming topics based on your questions.";
+      };
+      
       // If it's a user message, generate AI response
       if (messageData.role === 'user') {
         try {
-          // Get all previous messages for context
+          // Get all previous messages for context (limit to last 10 messages for context window)
           const allMessages = await storage.getChatMessagesByUserId(messageData.userId);
+          const recentMessages = allMessages.slice(-10);
           
           // Format messages for OpenAI
-          const formattedMessages = allMessages.map(msg => ({
+          const formattedMessages: Array<{ role: 'user' | 'assistant' | 'system', content: string }> = recentMessages.map(msg => ({
             role: msg.role as 'user' | 'assistant',
             content: msg.content
           }));
@@ -87,14 +116,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
           // Add system message for farming context
           formattedMessages.unshift({
             role: 'system',
-            content: 'You are a farming assistant specializing in sustainable agriculture, paddy cultivation, water conservation, and soil health. Provide helpful, accurate information about farming practices.'
+            content: 'You are a farming assistant specializing in sustainable agriculture, paddy cultivation, water conservation, and soil health. Provide helpful, accurate information about farming practices. Give concise, practical advice that farmers can implement. Focus especially on techniques relevant to paddy/rice cultivation in various climates.'
           });
+
+          console.log('Sending chat request to OpenAI with messages:', 
+            formattedMessages.map(m => ({ role: m.role, contentLength: m.content.length }))
+          );
 
           // Call OpenAI API
           const completion = await openai.chat.completions.create({
             model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
             messages: formattedMessages,
+            temperature: 0.7,
+            max_tokens: 500,
           });
+
+          console.log('Received response from OpenAI');
 
           // Save AI response to database
           const aiMessageContent = completion.choices[0].message.content || "I'm sorry, I couldn't generate a response.";
@@ -111,9 +148,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
           });
         } catch (aiError) {
           console.error("OpenAI error:", aiError);
+          
+          // Create a fallback response
+          const fallbackAnswer = getFallbackAnswer(messageData.content);
+          const aiMessage = await storage.createChatMessage({
+            userId: messageData.userId,
+            role: 'assistant',
+            content: fallbackAnswer
+          });
+          
           return res.status(201).json({
             userMessage: savedMessage,
-            error: "Failed to generate AI response"
+            aiResponse: aiMessage,
+            error: "Used fallback response due to API error"
           });
         }
       }
