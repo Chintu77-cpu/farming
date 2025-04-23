@@ -135,6 +135,7 @@
     "title": "AI Farming Assistant",
     "subtitle": "Ask any questions about sustainable farming, water conservation, soil health, or paddy cultivation",
     "welcome": "Hello! I'm your Farming Assistant. How can I help you today with sustainable farming practices?",
+    "noLoginMessage": "You can ask basic questions without logging in. For personalized advice and full AI capabilities, please sign in with Google.",
     "inputPlaceholder": "Type your farming question here...",
     "poweredBy": "Powered by OpenAI",
     "disclaimer": "Responses are AI-generated and may require verification",

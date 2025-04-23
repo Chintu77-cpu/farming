@@ -71,10 +71,12 @@ const ChatbotAssistant = forwardRef<HTMLDivElement, ChatbotAssistantProps>((prop
       // Add welcome message if no history
       setMessages([{
         role: 'assistant',
-        content: t("chatbot.welcome")
+        content: userId 
+          ? t("chatbot.welcome") 
+          : t("chatbot.welcome") + " " + t("chatbot.noLoginMessage")
       }]);
     }
-  }, [chatHistory, t]);
+  }, [chatHistory, t, userId]);
 
   // Auto-scroll to bottom of chat
   useEffect(() => {
@@ -125,21 +127,62 @@ const ChatbotAssistant = forwardRef<HTMLDivElement, ChatbotAssistantProps>((prop
     }
   });
 
+  // Offline answers for common farming questions
+  const getOfflineAnswer = (question: string): string => {
+    const normalizedQuestion = question.toLowerCase();
+    
+    // Common farming questions and pre-defined answers
+    if (normalizedQuestion.includes("water conservation") || normalizedQuestion.includes("save water")) {
+      return "Here are some water conservation tips for farming: 1) Implement drip irrigation which can save up to 60% water compared to flood irrigation. 2) Practice mulching to reduce evaporation. 3) Consider rainwater harvesting. 4) Level your fields properly to prevent water runoff. 5) Schedule irrigation early morning or evening to reduce evaporation.";
+    }
+    
+    if (normalizedQuestion.includes("soil health") || normalizedQuestion.includes("improve soil")) {
+      return "To improve soil health: 1) Practice crop rotation to prevent nutrient depletion. 2) Use cover crops during off-seasons. 3) Add organic matter through compost. 4) Minimize tillage to preserve soil structure. 5) Test your soil regularly to monitor pH and nutrient levels.";
+    }
+    
+    if (normalizedQuestion.includes("pest") || normalizedQuestion.includes("insect control")) {
+      return "For sustainable pest management: 1) Use companion planting to repel insects naturally. 2) Introduce beneficial insects like ladybugs. 3) Apply neem oil as a natural pesticide. 4) Maintain crop diversity to prevent pest outbreaks. 5) Use row covers for physical protection of plants.";
+    }
+    
+    if (normalizedQuestion.includes("paddy") || normalizedQuestion.includes("rice cultivation")) {
+      return "For paddy cultivation: 1) Prepare soil properly with good leveling. 2) Use the System of Rice Intensification (SRI) for higher yields with less water. 3) Maintain 2-3 cm water level instead of deep flooding. 4) Use organic fertilizers like farmyard manure. 5) Transplant young seedlings at 8-12 days for better growth.";
+    }
+    
+    // Default response for other questions
+    return "I can provide information about sustainable farming, water conservation, soil health, and paddy cultivation. Please ask specific questions about these topics, and I'll do my best to help you. For more detailed and personalized assistance, signing in will give you access to the full AI capabilities.";
+  };
+
   const handleSendMessage = () => {
     if (!message.trim() || isLoading) return;
     
+    setIsLoading(true);
+    
+    // Store the current message before clearing the input
+    const currentMessage = message;
+    setMessage("");
+    
+    // Add user message to chat
+    setMessages(prev => [
+      ...prev,
+      { role: 'user', content: currentMessage }
+    ]);
+    
+    // If user is not logged in, provide offline response
     if (!userId) {
-      toast({
-        title: t("chatbot.loginRequired"),
-        description: t("chatbot.pleaseLogin"),
-        variant: "default",
-      });
+      // Simulate response delay
+      setTimeout(() => {
+        const offlineResponse = getOfflineAnswer(currentMessage);
+        setMessages(prev => [
+          ...prev,
+          { role: 'assistant', content: offlineResponse }
+        ]);
+        setIsLoading(false);
+      }, 1000);
       return;
     }
     
-    setIsLoading(true);
-    sendMessageMutation.mutate(message);
-    setMessage("");
+    // If user is logged in, use the API
+    sendMessageMutation.mutate(currentMessage);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
