@@ -29,6 +29,12 @@
     "askAssistant": "Ask Farming Assistant",
     "browseResources": "Browse Resources"
   },
+  "home": {
+    "featuredTips": "Essential Farming Tips",
+    "learnMore": "Learn More About Sustainable Farming",
+    "welcomeBack": "Welcome back to FarmSustain",
+    "localWeather": "Local Weather"
+  },
   "features": {
     "title": "Essential Farming Resources"
   },
