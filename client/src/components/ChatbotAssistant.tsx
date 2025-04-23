@@ -144,8 +144,50 @@ const ChatbotAssistant = forwardRef<HTMLDivElement, ChatbotAssistantProps>((prop
       return "For sustainable pest management: 1) Use companion planting to repel insects naturally. 2) Introduce beneficial insects like ladybugs. 3) Apply neem oil as a natural pesticide. 4) Maintain crop diversity to prevent pest outbreaks. 5) Use row covers for physical protection of plants.";
     }
     
-    if (normalizedQuestion.includes("paddy") || normalizedQuestion.includes("rice cultivation")) {
-      return "For paddy cultivation: 1) Prepare soil properly with good leveling. 2) Use the System of Rice Intensification (SRI) for higher yields with less water. 3) Maintain 2-3 cm water level instead of deep flooding. 4) Use organic fertilizers like farmyard manure. 5) Transplant young seedlings at 8-12 days for better growth.";
+    // Comprehensive paddy cultivation answers
+    if (normalizedQuestion.includes("paddy") || normalizedQuestion.includes("rice")) {
+      // General paddy cultivation
+      if (normalizedQuestion.includes("cultivat") || normalizedQuestion.includes("grow")) {
+        return "For optimal paddy cultivation: 1) Choose appropriate varieties for your climate and soil type. 2) Prepare soil properly with good leveling and 2-3 plowings. 3) Use the System of Rice Intensification (SRI) for higher yields with less water. 4) Maintain 2-3 cm water level instead of deep flooding. 5) Transplant young seedlings at 8-12 days for better root development. 6) Practice proper spacing (25×25 cm) for better sunlight penetration and air circulation. 7) Apply balanced fertilization based on soil test results. 8) Monitor and control pests and diseases regularly.";
+      }
+      
+      // Paddy harvesting
+      if (normalizedQuestion.includes("harvest")) {
+        return "For paddy harvesting: 1) Harvest when 80-85% of grains turn golden yellow (typically 30-45 days after flowering). 2) Drain water from fields 7-10 days before harvesting to facilitate the process. 3) Use appropriate tools (sickle, reaper, or combine harvester) based on your farm size. 4) When using manual methods, cut the crop close to the ground. 5) Thresh immediately after harvesting to prevent grain loss. 6) Dry the grains properly to 14% moisture content for safe storage. 7) Clean the grains to remove impurities before storage. 8) Store in clean, dry, and well-ventilated spaces to prevent pest infestation.";
+      }
+      
+      // Soil preparation for paddy
+      if (normalizedQuestion.includes("soil") || normalizedQuestion.includes("land") || normalizedQuestion.includes("prepare")) {
+        return "For soil preparation in paddy cultivation: 1) Clear the field of previous crop residues. 2) Plow the field 2-3 times to a depth of 15-20 cm. 3) Level the field properly using a laser leveler for uniform water distribution. 4) Repair bunds to prevent water seepage. 5) Apply well-decomposed farmyard manure (5-10 tons/hectare) during final plowing. 6) For acidic soils, apply lime 2-3 weeks before planting. 7) Create proper drainage channels. 8) In SRI method, prepare raised beds with channels in between for better water management.";
+      }
+      
+      // Water management for paddy
+      if (normalizedQuestion.includes("water") || normalizedQuestion.includes("irrigat")) {
+        return "For water management in paddy cultivation: 1) Maintain 2-3 cm water level during early growth stages instead of deep flooding. 2) Practice alternate wetting and drying (AWD) method to save 15-30% water. 3) Install simple water tubes (made from PVC pipes with holes) to monitor water levels below the soil surface. 4) Irrigate when water level falls 15 cm below soil surface in AWD method. 5) Maintain proper field channels and bunds to prevent water loss. 6) Drain fields completely 7-10 days before harvesting. 7) Consider direct seeded rice in water-scarce regions. 8) If available, use drip irrigation for significant water savings.";
+      }
+      
+      // Pest and disease management for paddy
+      if (normalizedQuestion.includes("pest") || normalizedQuestion.includes("disease") || normalizedQuestion.includes("insect")) {
+        return "For pest and disease management in paddy: 1) Practice crop rotation to break pest cycles. 2) Use resistant varieties suited to your region. 3) Maintain field sanitation by removing crop residues that harbor pests. 4) Set up yellow sticky traps and pheromone traps for monitoring. 5) Encourage natural enemies by avoiding broad-spectrum pesticides. 6) For stem borers, apply neem-based products or release Trichogramma parasitoids. 7) For blast disease, maintain proper spacing and avoid excess nitrogen. 8) For bacterial leaf blight, use balanced fertilization and avoid field-to-field irrigation water movement.";
+      }
+      
+      // Fertilizer application for paddy
+      if (normalizedQuestion.includes("fertiliz") || normalizedQuestion.includes("nutrient") || normalizedQuestion.includes("manure")) {
+        return "For paddy fertilization: 1) Always base application on soil test results. 2) Apply well-decomposed farmyard manure (5-10 tons/hectare) during land preparation. 3) For conventional cultivation, apply NPK at 120:60:60 kg/ha in split doses. 4) Apply 25% nitrogen, full phosphorus, and 50% potassium as basal dose. 5) Apply 50% nitrogen in two equal splits at tillering and panicle initiation stages. 6) Apply remaining potassium at panicle initiation. 7) Use organic fertilizers like vermicompost and neem cake for sustainable farming. 8) Consider green manuring with legumes like Sesbania or Crotalaria before rice planting.";
+      }
+      
+      // Weed management for paddy
+      if (normalizedQuestion.includes("weed")) {
+        return "For weed management in paddy fields: 1) Start with clean, weed-free fields through proper land preparation. 2) Use certified clean seeds to prevent weed seed introduction. 3) In transplanted rice, maintain standing water of 2-3 cm to suppress weeds. 4) Implement mechanical weeding at 10-15 days and 25-30 days after transplanting. 5) Use cono-weeders or rotary weeders in SRI method, which also incorporates weeds as green manure. 6) If using herbicides, apply pre-emergence herbicides within 3 days of transplanting. 7) For direct-seeded rice, use stale seedbed technique by irrigating fields 10-15 days before sowing to germinate weed seeds and destroy them. 8) Practice crop rotation with non-rice crops to break weed cycles.";
+      }
+      
+      // Post-harvest processing for paddy
+      if (normalizedQuestion.includes("post-harvest") || normalizedQuestion.includes("storage") || normalizedQuestion.includes("processing")) {
+        return "For post-harvest handling of paddy: 1) Thresh immediately after harvesting to prevent grain discoloration and loss. 2) Clean grains properly to remove impurities. 3) Dry grains in thin layers under sun until moisture content reaches 12-14%. 4) Use mechanical dryers during rainy seasons. 5) Store in clean, dry, and well-ventilated rooms or proper storage structures. 6) Use jute bags lined with polythene for short-term storage. 7) For long-term storage, use hermetic bags or metal silos. 8) Regularly monitor stored grains for pest infestation, and use neem leaves or diatomaceous earth as natural protectants.";
+      }
+      
+      // Default paddy information
+      return "For paddy cultivation: 1) Prepare soil properly with good leveling and 2-3 plowings. 2) Use the System of Rice Intensification (SRI) for higher yields with less water. 3) Maintain 2-3 cm water level instead of deep flooding. 4) Apply well-decomposed farmyard manure (5-10 tons/hectare) during land preparation. 5) Transplant young seedlings at 8-12 days for better growth. 6) Harvest when 80-85% of grains turn golden yellow. 7) Dry the grains properly to 14% moisture content for safe storage. 8) Practice crop rotation and integrated pest management for sustainable production.";
     }
     
     // Default response for other questions
