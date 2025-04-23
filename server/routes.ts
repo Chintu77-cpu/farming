@@ -92,8 +92,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
           return "For sustainable pest management: Use companion planting to naturally repel insects. Introduce beneficial insects like ladybugs that prey on pests. Apply neem oil as a natural pesticide. Maintain biodiversity in your fields to prevent large pest outbreaks.";
         }
         
+        // Comprehensive paddy cultivation answers
         if (normalizedQuestion.includes("paddy") || normalizedQuestion.includes("rice")) {
-          return "For paddy cultivation: The System of Rice Intensification (SRI) can increase yields while using less water. Maintain shallow water levels (2-3cm) instead of deep flooding. Use young seedlings (8-12 days) when transplanting. Space plants properly to allow sunlight penetration.";
+          // General paddy cultivation
+          if (normalizedQuestion.includes("cultivat") || normalizedQuestion.includes("grow")) {
+            return "For optimal paddy cultivation: 1) Choose appropriate varieties for your climate and soil type. 2) Prepare soil properly with good leveling and 2-3 plowings. 3) Use the System of Rice Intensification (SRI) for higher yields with less water. 4) Maintain 2-3 cm water level instead of deep flooding. 5) Transplant young seedlings at 8-12 days for better root development. 6) Practice proper spacing (25×25 cm) for better sunlight penetration and air circulation. 7) Apply balanced fertilization based on soil test results. 8) Monitor and control pests and diseases regularly.";
+          }
+          
+          // Paddy harvesting
+          if (normalizedQuestion.includes("harvest")) {
+            return "For paddy harvesting: 1) Harvest when 80-85% of grains turn golden yellow (typically 30-45 days after flowering). 2) Drain water from fields 7-10 days before harvesting to facilitate the process. 3) Use appropriate tools (sickle, reaper, or combine harvester) based on your farm size. 4) When using manual methods, cut the crop close to the ground. 5) Thresh immediately after harvesting to prevent grain loss. 6) Dry the grains properly to 14% moisture content for safe storage. 7) Clean the grains to remove impurities before storage. 8) Store in clean, dry, and well-ventilated spaces to prevent pest infestation.";
+          }
+          
+          // Soil preparation for paddy
+          if (normalizedQuestion.includes("soil") || normalizedQuestion.includes("land") || normalizedQuestion.includes("prepare")) {
+            return "For soil preparation in paddy cultivation: 1) Clear the field of previous crop residues. 2) Plow the field 2-3 times to a depth of 15-20 cm. 3) Level the field properly using a laser leveler for uniform water distribution. 4) Repair bunds to prevent water seepage. 5) Apply well-decomposed farmyard manure (5-10 tons/hectare) during final plowing. 6) For acidic soils, apply lime 2-3 weeks before planting. 7) Create proper drainage channels. 8) In SRI method, prepare raised beds with channels in between for better water management.";
+          }
+          
+          // Water management for paddy
+          if (normalizedQuestion.includes("water") || normalizedQuestion.includes("irrigat")) {
+            return "For water management in paddy cultivation: 1) Maintain 2-3 cm water level during early growth stages instead of deep flooding. 2) Practice alternate wetting and drying (AWD) method to save 15-30% water. 3) Install simple water tubes (made from PVC pipes with holes) to monitor water levels below the soil surface. 4) Irrigate when water level falls 15 cm below soil surface in AWD method. 5) Maintain proper field channels and bunds to prevent water loss. 6) Drain fields completely 7-10 days before harvesting. 7) Consider direct seeded rice in water-scarce regions. 8) If available, use drip irrigation for significant water savings.";
+          }
+          
+          // Default paddy information
+          return "For paddy cultivation: 1) Prepare soil properly with good leveling and 2-3 plowings. 2) Use the System of Rice Intensification (SRI) for higher yields with less water. 3) Maintain 2-3 cm water level instead of deep flooding. 4) Apply well-decomposed farmyard manure (5-10 tons/hectare) during land preparation. 5) Transplant young seedlings at 8-12 days for better growth. 6) Harvest when 80-85% of grains turn golden yellow. 7) Dry the grains properly to 14% moisture content for safe storage. 8) Practice crop rotation and integrated pest management for sustainable production.";
         }
         
         // Default answer for other questions
@@ -104,7 +126,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (messageData.role === 'user') {
         try {
           // Get all previous messages for context (limit to last 10 messages for context window)
-          const allMessages = await storage.getChatMessagesByUserId(messageData.userId);
+          const userId = messageData.userId;
+          if (typeof userId !== 'number') {
+            throw new Error('Invalid userId');
+          }
+          const allMessages = await storage.getChatMessagesByUserId(userId);
           const recentMessages = allMessages.slice(-10);
           
           // Format messages for OpenAI
